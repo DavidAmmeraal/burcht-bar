@@ -1,0 +1,20 @@
+<section ng-controller="ConsumptionsController" ng-init="find()">
+  <div class="page-header">
+    <h1>Consumptions</h1>
+  </div>
+  <div class="list-group">
+    <a ng-repeat="consumption in consumptions" ui-sref="consumptions.view({consumptionId: consumption._id})" class="list-group-item">
+      <small class="list-group-item-text">
+        Posted on
+        <span ng-bind="consumption.created | date:'mediumDate'"></span>
+        by
+        <span ng-bind="consumption.user.displayName"></span>
+      </small>
+      <h4 class="list-group-item-heading" ng-bind="consumption.title"></h4>
+      <p class="list-group-item-text" ng-bind="consumption.content"></p>
+    </a>
+  </div>
+  <div class="alert alert-warning text-center" ng-if="consumptions.$resolved && !consumptions.length">
+    No consumptions yet, why don't you <a ui-sref="consumptions.create">create one</a>?
+  </div>
+</section>
