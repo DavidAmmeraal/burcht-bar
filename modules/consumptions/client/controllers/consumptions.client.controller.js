@@ -1,12 +1,12 @@
 'use strict';
 
 // consumptions controller
-angular.module('consumptions').controller('consumptionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Consumptions',
-  function ($scope, $stateParams, $location, Authentication, Consumptions) {
+angular.module('consumptions').controller('ConsumptionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Consumptions',
+  function($scope, $stateParams, $location, Authentication, Consumptions) {
     $scope.authentication = Authentication;
 
     // Create new Consumption
-    $scope.create = function (isValid) {
+    $scope.create = function(isValid) {
       $scope.error = null;
 
       if (!isValid) {
@@ -22,19 +22,19 @@ angular.module('consumptions').controller('consumptionsController', ['$scope', '
       });
 
       // Redirect after save
-      consumption.$save(function (response) {
+      consumption.$save(function(response) {
         $location.path('consumptions/' + response._id);
 
         // Clear form fields
         $scope.title = '';
         $scope.content = '';
-      }, function (errorResponse) {
+      }, function(errorResponse) {
         $scope.error = errorResponse.data.message;
       });
     };
 
     // Remove existing Consumption
-    $scope.remove = function (consumption) {
+    $scope.remove = function(consumption) {
       if (consumption) {
         consumption.$remove();
 
@@ -44,14 +44,14 @@ angular.module('consumptions').controller('consumptionsController', ['$scope', '
           }
         }
       } else {
-        $scope.consumption.$remove(function () {
+        $scope.consumption.$remove(function() {
           $location.path('consumptions');
         });
       }
     };
 
     // Update existing Consumption
-    $scope.update = function (isValid) {
+    $scope.update = function(isValid) {
       $scope.error = null;
 
       if (!isValid) {
@@ -62,20 +62,32 @@ angular.module('consumptions').controller('consumptionsController', ['$scope', '
 
       var consumption = $scope.consumption;
 
-      consumption.$update(function () {
+      consumption.$update(function() {
         $location.path('consumptions/' + consumption._id);
-      }, function (errorResponse) {
+      }, function(errorResponse) {
         $scope.error = errorResponse.data.message;
       });
     };
 
     // Find a list of consumptions
-    $scope.find = function () {
+    $scope.find = function() {
       $scope.consumptions = Consumptions.query();
     };
 
+    $scope.toggleCheckAll = function() {
+      if ($scope.checkAll) {
+        $scope.checkAll = true;
+      } else {
+        $scope.checkAll = false;
+      }
+      angular.forEach($scope.consumptions, function(consumption) {
+        consumption.checked = $scope.checkAll;
+      });
+      console.log($scope.consumptions);
+    };
+
     // Find existing Consumption
-    $scope.findOne = function () {
+    $scope.findOne = function() {
       $scope.consumption = Consumptions.get({
         consumptionId: $stateParams.consumptionId
       });

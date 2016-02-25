@@ -72,7 +72,7 @@ exports.delete = function (req, res) {
  * List of Consumptions
  */
 exports.list = function (req, res) {
-  Consumption.find().sort('-created').populate('user', 'displayName').exec(function (err, consumptions) {
+  Consumption.find().populate('user').exec(function (err, consumptions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

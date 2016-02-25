@@ -13,7 +13,7 @@ acl = new acl(new acl.memoryBackend());
 /**
  * Invoke Admin Permissions
  */
-exports.invokeRolesPolicies = function () {
+exports.invokeRolesPolicies = function() {
   acl.allow([{
     roles: ['admin'],
     allows: [{
@@ -29,12 +29,11 @@ exports.invokeRolesPolicies = function () {
 /**
  * Check If Admin Policy Allows
  */
-exports.isAllowed = function (req, res, next) {
-  console.log('isAllowed()');
+exports.isAllowed = function(req, res, next) {
   var roles = (req.user) ? req.user.roles : ['guest'];
-  var checkRolesAllowed = function(){
+  var checkRolesAllowed = function() {
     // Check for user roles
-    acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function (err, isAllowed) {
+    acl.areAnyRolesAllowed(roles, req.route.path, req.method.toLowerCase(), function(err, isAllowed) {
       if (err) {
         // An authorization error occurred.
         return res.status(500).send('Unexpected authorization error');
@@ -52,20 +51,20 @@ exports.isAllowed = function (req, res, next) {
   };
 
 
-  if(req.headers.authorization){
+  if (req.headers.authorization) {
     var tmp = req.headers.authorization.split(' ');
     var buf = new Buffer(tmp[1], 'base64'); // create a buffer and tell it the data coming in is base64
     var plainAuth = buf.toString();
-    tmp = plainAuth.split(":");
+    tmp = plainAuth.split(':');
     User.findOne({
       username: tmp[0]
-    }, function(err, user){
+    }, function(err, user) {
       if (user && user.authenticate(tmp[1])) {
         roles = user.roles;
         return checkRolesAllowed();
       }
     });
-  }else{
+  } else {
     return checkRolesAllowed();
   }
 };
