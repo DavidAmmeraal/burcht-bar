@@ -31,6 +31,14 @@ angular.module('consumptions').config(['$stateProvider',
         data: {
           roles: ['user', 'admin']
         }
+      })
+      .state('consumption-users', {
+        url: '/consumption-users',
+        templateUrl: 'modules/consumptions/client/views/list-consumption-users.client.view.html'
+      })
+      .state('consumption-users.view', {
+        url: '/:userId',
+        templateUrl: 'modules/consumptions/client/views/view-consumption-user.client.view.html'
       });
   }
 ]);

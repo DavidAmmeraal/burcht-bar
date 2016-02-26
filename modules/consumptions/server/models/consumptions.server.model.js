@@ -22,9 +22,13 @@ var ConsumptionSchema = new Schema({
     type: Date,
     default: null
   },
+  price: {
+    type: Number,
+    default: 0.5
+  },
   user: {
     type: Schema.ObjectId,
-    ref: 'User'
+    ref: 'ConsumptionUser'
   }
 });
 

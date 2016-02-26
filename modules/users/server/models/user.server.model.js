@@ -117,14 +117,15 @@ UserSchema.pre('save', function (next) {
  */
 UserSchema.pre('validate', function (next) {
   if (this.provider === 'local' && this.password && this.isModified('password')) {
-    var result = owasp.test(this.password);
-    if (result.errors.length) {
-      var error = result.errors.join(' ');
-      this.invalidate('password', error);
+    var passed = new RegExp("(?=.{6,}).*", "g").test(this.password);
+    if(!passed){
+      this.invalidate('password', 'Password not strong enough!');
+    }else{
+      next();
     }
+  }else{
+    next();
   }
-
-  next();
 });
 
 /**

@@ -5,7 +5,14 @@ angular.module('consumptions').run(['Menus',
   function (Menus) {
     // Add the consumptions dropdown item
     Menus.addMenuItem('topbar', {
-      title: 'Consumptions',
+      title: 'Gebruikers',
+      state: 'users.list',
+      type: 'item',
+      roles: ['user', 'admin']
+    });
+
+    Menus.addMenuItem('topbar', {
+      title: 'Consumpties',
       state: 'consumptions',
       type: 'dropdown',
       roles: ['*']
@@ -13,15 +20,8 @@ angular.module('consumptions').run(['Menus',
 
     // Add the dropdown list item
     Menus.addSubMenuItem('topbar', 'consumptions', {
-      title: 'List Consumptions',
-      state: 'consumptions.list'
-    });
-
-    // Add the dropdown create item
-    Menus.addSubMenuItem('topbar', 'consumptions', {
-      title: 'Create Consumption',
-      state: 'consumptions.create',
-      roles: ['user']
+      title: 'Alle Consumpties',
+      state: 'consumption-users.list'
     });
   }
 ]);
