@@ -83,7 +83,7 @@ exports.list = function(req, res) {
             return result._id.equals(user._id);
           });
 
-          if (balanceObj.balance) {
+          if (balanceObj && balanceObj.balance) {
             user.balance = balanceObj.balance;
           }
           return user;
