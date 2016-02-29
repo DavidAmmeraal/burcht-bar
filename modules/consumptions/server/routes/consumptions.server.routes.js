@@ -23,10 +23,11 @@ module.exports = function (app) {
   app.route('/api/consumption-users').all(consumptionsPolicy.isAllowed)
     .get(consumptionUsers.list);
 
-  app.route('/api/consumption-users/:userId').all(consumptionsPolicy.isAllowed)
+  app.route('/api/consumption-users/:consumptionUserID').all(consumptionsPolicy.isAllowed)
     .get(consumptionUsers.read);
 
   // Finish by binding the consumption middleware
   app.param('consumptionId', consumptions.consumptionByID);
+  app.param('consumptionUserId', consumptionUsers.userByID);
   //app.param('userId', consumptionUsers.userById);
 };

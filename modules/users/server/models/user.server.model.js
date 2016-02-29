@@ -117,7 +117,7 @@ UserSchema.pre('save', function (next) {
  */
 UserSchema.pre('validate', function (next) {
   if (this.provider === 'local' && this.password && this.isModified('password')) {
-    var passed = new RegExp("(?=.{6,}).*", "g").test(this.password);
+    var passed = new RegExp('(?=.{6,}).*', 'g').test(this.password);
     if(!passed){
       this.invalidate('password', 'Password not strong enough!');
     }else{

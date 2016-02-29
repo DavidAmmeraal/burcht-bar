@@ -33,12 +33,22 @@ angular.module('consumptions').config(['$stateProvider',
         }
       })
       .state('consumption-users', {
+        abstract: true,
         url: '/consumption-users',
+        template: '<ui-view/>'
+      })
+      .state('consumption-users.list', {
+        url: '',
         templateUrl: 'modules/consumptions/client/views/list-consumption-users.client.view.html'
       })
+      .state('consumption-users.barcodes', {
+        url: '/barcodes',
+        templateUrl: 'modules/consumptions/client/views/list-barcodes.client.view.html'
+      })
       .state('consumption-users.view', {
-        url: '/:userId',
+        url: '/:consumptionUserId',
         templateUrl: 'modules/consumptions/client/views/view-consumption-user.client.view.html'
       });
+
   }
 ]);

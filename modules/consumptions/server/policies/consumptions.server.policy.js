@@ -30,7 +30,10 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/consumption-users',
       permissions: ['get']
     }, {
-      resources: '/api/consumption-users/:userId',
+      resources: '/api/consumption-users/:consumptionUserID',
+      permissions: ['get']
+    }, {
+      resources: '/api/consumption-users/:consumptionUserID/balance',
       permissions: ['get']
     }]
   },{

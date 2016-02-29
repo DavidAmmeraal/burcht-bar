@@ -16,7 +16,9 @@ module.exports = {
         'public/lib/angular-ui-utils/ui-utils.js',
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.js',
         'public/lib/angular-file-upload/angular-file-upload.js',
-        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js'
+        'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/lib/JsBarcode/JsBarcode.js',
+        'public/lib/JsBarcode/barcodes/CODE128.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

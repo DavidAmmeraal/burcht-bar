@@ -16,18 +16,11 @@ angular.module('consumptions').controller('ConsumptionsController', ['$scope', '
       }
 
       // Create new Consumption object
-      var consumption = new Consumptions({
-        title: this.title,
-        content: this.content
-      });
+      var consumption = new Consumptions({});
 
       // Redirect after save
       consumption.$save(function(response) {
         $location.path('consumptions/' + response._id);
-
-        // Clear form fields
-        $scope.title = '';
-        $scope.content = '';
       }, function(errorResponse) {
         $scope.error = errorResponse.data.message;
       });
@@ -71,7 +64,16 @@ angular.module('consumptions').controller('ConsumptionsController', ['$scope', '
 
     // Find a list of consumptions
     $scope.find = function() {
-      $scope.consumptions = Consumptions.query();
+      if($scope.user){
+        $scope.user.$promise.then(function(){
+          var params = {
+            user: $scope.user._id
+          };
+          $scope.consumptions = Consumptions.query(params);
+        });
+      }else{
+        $scope.consumptions = Consumptions.query();
+      }
     };
 
     $scope.toggleCheckAll = function() {
