@@ -18,7 +18,6 @@ angular.module('consumptions').controller('PaymentsController', ['$scope', '$sta
           $scope.amount = 0;
           $scope.submitted = true;
         });
-        console.log(payment);
       }
     };
     // Create new Consumption

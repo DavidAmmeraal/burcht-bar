@@ -106,7 +106,7 @@ var UserSchema = new Schema({
   }
 });
 
-UserSchema.plugin(autoIncrement.plugin, {model: 'User', field: 'barcode', startAt: '1000'});
+UserSchema.plugin(autoIncrement.plugin, {model: 'User', field: 'barcode', startAt: '2000'});
 
 /**
  * Hook a pre save method to hash the password
