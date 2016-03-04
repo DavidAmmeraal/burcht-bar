@@ -3,17 +3,19 @@
 // consumptions controller
 angular.module('users').controller('ConsumptionUsersController', ['$scope', '$stateParams', '$location', 'Authentication', 'ConsumptionUsers',
   function($scope, $stateParams, $location, Authentication, ConsumptionUsers) {
+
     $scope.authentication = Authentication;
 
     $scope.users = [];
     $scope.user = null;
 
-    if($stateParams.consumptionUserId){
+    if($stateParams.barcode){
       $scope.user = ConsumptionUsers.get({
-        'consumptionUserId': $stateParams.consumptionUserId
+        'barcode': $stateParams.barcode
       });
     }else{
       $scope.users = ConsumptionUsers.query();
+      console.log($scope.users);
     }
 
   }

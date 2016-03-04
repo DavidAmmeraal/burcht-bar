@@ -7,13 +7,13 @@
     <table class="table table-hover">
       <tr>
         <th>Naam</th>
-        <th>Open</th>
+        <th>Balans</th>
       </tr>
       <tr ng-repeat="user in users">
         <td>
-          <a ng-bind="user.displayName" ui-sref="consumption-users.view({consumptionUserId: user._id})"></a>
+          <a ng-bind="user.displayName" ui-sref="consumption-users.view({barcode: user.barcode})"></a>
         </td>
-        <td>{{user.balance | currency : '€'}}</td>
+        <td>{{user.balance | customCurrency : '€'}}</td>
       </tr>
     </table>
   </div>

@@ -14,83 +14,60 @@ var path = require('path'),
  * Show the current consumption
  */
 exports.read = function(req, res) {
-  console.log(req.params);
+
+  ConsumptionUser.getUsersWithBalance({
+    barcode: req.params.barcode
+  }, true).then(function(result){
+    res.json(result);
+  }).catch(function(err){
+    res.status(400).send({
+      message: errorHandler.getErrorMessage(err)
+    });
+  });
+
+  /*
   Consumption.aggregate([{
     $match: {
-      user: mongoose.Types.ObjectId(req.params.consumptionUserID),
-      paid: false
+      $and: [{
+        paid: false
+      },{
+        user: Number(req.params.barcode)
+      }]
     }
   }, {
     $group: {
-      _id: req.params.consumptionUserID,
+      _id: '$user',
       balance: {
         $sum: '$price'
       }
     }
   }], function(err, result) {
-    ConsumptionUser.findOne({
-        _id: req.params.consumptionUserID
-      })
+    ConsumptionUser.findOne({barcode: req.params.barcode})
       .exec(function(err, user) {
         if (err) {
           return res.status(400).send({
             message: errorHandler.getErrorMessage(err)
           });
         } else {
-
           user = user.toObject();
           user = _.extend(user, result[0]);
           res.json(user);
         }
       });
   });
+  */
 };
 
 /**
  * List of Consumptions
  */
 exports.list = function(req, res) {
-  ConsumptionUser.find().exec(function(err, users) {
-    if (err) {
-      return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-      });
-    } else {
-      var ids = _.pluck(users, '_id');
-
-      Consumption.aggregate([{
-        $match: {
-          $and: [{
-            paid: false
-          }, {
-            user: {
-              $in: ids
-            }
-          }]
-
-        }
-      }, {
-        $group: {
-          _id: '$user',
-          balance: {
-            $sum: "$price"
-          }
-        }
-      }], function(err, results) {
-        users = users.map(function(user) {
-          user = user.toObject();
-          var balanceObj = _.find(results, function(result) {
-            return result._id.equals(user._id);
-          });
-
-          if (balanceObj && balanceObj.balance) {
-            user.balance = balanceObj.balance;
-          }
-          return user;
-        });
-        res.json(users);
-      });
-    }
+  ConsumptionUser.getUsersWithBalance().then(function(result){
+    res.json(result);
+  }).catch(function(err){
+    res.status(400).send({
+      message: errorHandler.getErrorMessage(err)
+    });
   });
 };
 

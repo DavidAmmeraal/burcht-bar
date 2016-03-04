@@ -1,24 +1,20 @@
 <section ng-controller="ConsumptionsController" ng-init="find()">
   <div class="page-header">
-    <h1>Consumptions</h1>
+    <h1>Consumpties</h1>
   </div>
   <table class="table table-hover">
     <tr>
       <th><input type="checkbox" ng-model="checkAll" ng-change="toggleCheckAll()"></th>
-      <th>User</th>
-      <th>Created</th>
-      <th>Paid</th>
-      <th>Paid On</th>
+      <th>Aangemaakt</th>
+      <th>Prijs</th>
     </tr>
     <tr ng-repeat="consumption in consumptions">
       <td><input type="checkbox" ng-model="consumption.checked" ng-true-value="true" ng-false-value="false"></td>
-      <td><a ng-bind="consumption.user.displayName" ui-sref="users.view({userId: consumption.user._id})"></a></td>
       <td ng-bind="consumption.created | date:'mediumDate'"></td>
-      <td>-</td>
-      <td>-</td>
+      <td ng-bind="consumption.price | customCurrency:'€'"></td>
     </tr>
   </table>
   <div class="alert alert-warning text-center" ng-if="consumptions.$resolved && !consumptions.length">
-    No consumptions yet, why don't you <a ui-sref="consumptions.create">create one</a>?
+    Nog geen consumpties
   </div>
 </section>

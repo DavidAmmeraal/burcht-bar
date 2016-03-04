@@ -23,6 +23,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/consumptions',
       permissions: ['post']
+    }, {
+      resources: '/api/payments',
+      permissions: ['post']
     }]
   }, {
     roles: ['admin', 'user'],
@@ -30,10 +33,13 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/consumption-users',
       permissions: ['get']
     }, {
-      resources: '/api/consumption-users/:consumptionUserID',
+      resources: '/api/consumption-users/:barcode',
       permissions: ['get']
     }, {
-      resources: '/api/consumption-users/:consumptionUserID/balance',
+      resources: '/api/payments',
+      permissions: ['get']
+    }, {
+      resources: '/api/payments/:paymentId',
       permissions: ['get']
     }]
   },{
@@ -61,7 +67,6 @@ exports.invokeRolesPolicies = function () {
  * Check If Consumptions Policy Allows
  */
 exports.isAllowed = function (req, res, next) {
-  console.log(req.user);
   var roles = (req.user) ? req.user.roles : ['guest'];
 
   // If an consumption is being processed and the current user created it then allow any manipulation

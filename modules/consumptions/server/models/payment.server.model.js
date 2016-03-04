@@ -9,12 +9,12 @@ var mongoose = require('mongoose'),
 /**
  * Consumption Schema
  */
-var ConsumptionSchema = new Schema({
+var PaymentSchema = new Schema({
   created: {
     type: Date,
     default: Date.now
   },
-  price: {
+  amount: {
     type: Number,
     default: 0.5
   },
@@ -24,4 +24,4 @@ var ConsumptionSchema = new Schema({
   }
 });
 
-mongoose.model('Consumption', ConsumptionSchema);
+mongoose.model('Payment', PaymentSchema);

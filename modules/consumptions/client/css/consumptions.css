@@ -1,0 +1,23 @@
+.list-barcodes .barcode-container{
+  position: relative;
+  width: 100%;
+  padding-bottom: 50%;
+}
+
+.list-barcodes .barcode-container .barcode-wrapper{
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.list-barcodes .barcode-container .barcode-wrapper .barcode{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 0 15px;
+}
+
+.list-barcodes .barcode-container .barcode-wrapper .barcode img{
+  padding: 0;
+}

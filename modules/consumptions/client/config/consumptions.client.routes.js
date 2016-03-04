@@ -46,7 +46,7 @@ angular.module('consumptions').config(['$stateProvider',
         templateUrl: 'modules/consumptions/client/views/list-barcodes.client.view.html'
       })
       .state('consumption-users.view', {
-        url: '/:consumptionUserId',
+        url: '/:barcode',
         templateUrl: 'modules/consumptions/client/views/view-consumption-user.client.view.html'
       });
 

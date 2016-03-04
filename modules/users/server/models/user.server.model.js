@@ -8,7 +8,10 @@ var mongoose = require('mongoose'),
   crypto = require('crypto'),
   validator = require('validator'),
   generatePassword = require('generate-password'),
+  autoIncrement = require('mongoose-auto-increment'),
   owasp = require('owasp-password-strength-test');
+
+autoIncrement.initialize(mongoose);
 
 /**
  * A Validation function for local strategy properties
@@ -97,8 +100,13 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
+  },
+  barcode: {
+    type: Number
   }
 });
+
+UserSchema.plugin(autoIncrement.plugin, {model: 'User', field: 'barcode', startAt: '1000'});
 
 /**
  * Hook a pre save method to hash the password

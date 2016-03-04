@@ -1,7 +1,6 @@
 'use strict';
 var User = require('mongoose').model('User');
 
-
 exports.isAllowed = function(req, res, next) {
   if (req.headers.authorization) {
     var tmp = req.headers.authorization.split(' ');

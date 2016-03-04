@@ -1,17 +1,21 @@
-<section ng-controller="ConsumptionUsersController as controller">
+<section class="list-barcodes" ng-controller="ConsumptionUsersController as controller">
   <div class="page-header">
     <h1>Barcodes</h1>
   </div>
   <div class="row">
     <div class="col-md-12">
-      <div class="col-md-4" ng-repeat="user in users">
-        <div class="row" style="margin-bottom: 50px">
-          <div class="col-md-12">
+      <div class="col-xs-3" ng-repeat="user in users">
+        <div class="row">
+          <div class="col-xs-12">
             <div class="row">
-              <span class="text-center col-md-12" ng-bind="user.displayName"></span>
+              <span class="text-center col-xs-12" ng-bind="user.displayName"></span>
             </div>
             <div class="row">
-              <img class="barcode col-md-12" barcode ng-model="user._id" style="height: 150px"/>
+              <div class="barcode-container col-xs-12">
+                <div class="barcode-wrapper">
+                  <img class="barcode col-xs-12" barcode ng-model="user.barcode"/>
+                </div>
+              </div>
             </div>
           </div>
         </div>

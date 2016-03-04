@@ -6,13 +6,15 @@ angular.module('users')
       require: 'ngModel',
       link: function($scope, element, attributes, ngModel) {
 
-        var initialize = function(){
-          if(ngModel.$modelValue){
-            $window.JsBarcode(element[0], ngModel.$modelValue);
+        var initialize = function() {
+          if (ngModel.$modelValue) {
+            $window.JsBarcode(element[0], "" + ngModel.$modelValue, {
+              format: 'CODE39'
+            });
           }
         };
 
-        $scope.$watch(function(){
+        $scope.$watch(function() {
           return ngModel.$modelValue;
         }, initialize);
 

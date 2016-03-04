@@ -70,7 +70,7 @@ exports.delete = function(req, res) {
  * List of Consumptions
  */
 exports.list = function(req, res) {
-  Consumption.find(req.query).populate('user').exec(function(err, consumptions) {
+  Consumption.find(req.query).exec(function(err, consumptions) {
     if (err) {
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)

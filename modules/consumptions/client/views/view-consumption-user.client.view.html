@@ -24,7 +24,13 @@
       <div class="col-md-4 user-details-right">
         <div class="panel panel-default">
           <div class="panel-body text-center">
-            <h2>Open bedrag: <b ng-bind="user.balance | currency : '€'"></b></h2>
+            <h2>Balans: <b ng-bind="user.balance | customCurrency : '€'"></b></h2>
+            <form class="form-inline">
+              <div class="form-group">
+                <label for="payment">Betaling</label>
+                <input type="text" class="form-control" id="exampleInputName2" placeholder="€0.00">
+                <button class="btn btn-default">Innen</button>
+              </div>
           </div>
         </div>
       </div>

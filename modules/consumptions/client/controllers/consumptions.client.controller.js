@@ -1,8 +1,8 @@
 'use strict';
 
 // consumptions controller
-angular.module('consumptions').controller('ConsumptionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Consumptions',
-  function($scope, $stateParams, $location, Authentication, Consumptions) {
+angular.module('consumptions').controller('ConsumptionsController', ['$scope', '$stateParams', '$location', 'Authentication', 'Consumptions', 'ConsumptionUsers',
+  function($scope, $stateParams, $location, Authentication, Consumptions, ConsumptionUsers) {
     $scope.authentication = Authentication;
 
     // Create new Consumption
@@ -67,7 +67,7 @@ angular.module('consumptions').controller('ConsumptionsController', ['$scope', '
       if($scope.user){
         $scope.user.$promise.then(function(){
           var params = {
-            user: $scope.user._id
+            user: $scope.user.barcode
           };
           $scope.consumptions = Consumptions.query(params);
         });
