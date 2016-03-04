@@ -25,12 +25,17 @@
         <div class="panel panel-default">
           <div class="panel-body text-center">
             <h2>Balans: <b ng-bind="user.balance | customCurrency : '€'"></b></h2>
-            <form class="form-inline">
-              <div class="form-group">
-                <label for="payment">Betaling</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="€0.00">
-                <button class="btn btn-default">Innen</button>
-              </div>
+            <div class="payment" ng-controller="PaymentsController">
+              <form ng-hide="submitted" name="paymentForm" ng-submit="submitPaymentForm(paymentForm.$valid)" class="form-inline" novalidate>
+                <div class="form-group">
+                  <label for="payment">Betaling</label>
+                  <input type="number" ng-model="amount" class="form-control" ng-min="0.01" id="paymentAmount" placeholder="€0.00">
+                  <button class="btn btn-default" ng-disabled="paymentForm.$invalid">Innen</button>
+                </div>
+              </form>
+              <p ng-show="submitted">De betaling is ontvangen.</p>
+              <button ng-show="submitted" class="btn btn-default" ng-click="submitted = false">Nog een betaling</button>
+            </div>
           </div>
         </div>
       </div>

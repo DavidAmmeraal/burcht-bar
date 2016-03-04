@@ -77,7 +77,7 @@ ConsumptionUserSchema.statics.getPaid = function(params){
     },{
       $group: {
         _id: '$user',
-        consumed: {
+        paid: {
           $sum: '$amount'
         }
       }
@@ -119,6 +119,8 @@ ConsumptionUserSchema.statics.getUsersWithBalance = function(params, single){
       return ConsumptionUserSchema.statics.getPaid(aggrParams);
     }).then(function(results){
       paid = results;
+
+      console.log(paid);
 
       users = _.map(users, function(user){
 

@@ -16,7 +16,7 @@ var PaymentSchema = new Schema({
   },
   amount: {
     type: Number,
-    default: 0.5
+    default: 0
   },
   user: {
     type: Number,
