@@ -25,7 +25,7 @@
         <div class="panel panel-default">
           <div class="panel-body text-center">
             <h2>Balans: <b ng-bind="user.balance | customCurrency : '€'"></b></h2>
-            <div class="payment" ng-controller="PaymentsController">
+            <div class="payment" ng-controller="PaymentsController" ng-show="shouldRender()">
               <form ng-hide="submitted" name="paymentForm" ng-submit="submitPaymentForm(paymentForm.$valid)" class="form-inline" novalidate>
                 <div class="form-group">
                   <label for="payment">Betaling</label>

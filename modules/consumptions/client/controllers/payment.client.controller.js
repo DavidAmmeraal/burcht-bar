@@ -7,6 +7,14 @@ angular.module('consumptions').controller('PaymentsController', ['$scope', '$sta
     $scope.amount = 0;
     $scope.submitted = false;
 
+    $scope.shouldRender = function(){
+      if($scope.authentication && $scope.authentication.user && $scope.authentication.user.roles.indexOf('admin') !== -1){
+        return true;
+      }
+
+      return false;
+    };
+
     $scope.submitPaymentForm = function(isValid){
       if(isValid && $scope.user){
         var payment = new Payments({

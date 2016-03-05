@@ -27,9 +27,21 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/payments',
       permissions: ['post']
     }]
-  }, {
-    roles: ['admin', 'user'],
+  },{
+    roles: ['user', 'admin'],
     allows: [{
+      resources: '/api/consumptions',
+      permissions: ['get']
+    }, {
+      resources: '/api/consumptions/:consumptionId',
+      permissions: ['get']
+    }, {
+      resources: '/api/consumptions',
+      permissions: ['get']
+    }, {
+      resources: '/api/consumptions/:consumptionId',
+      permissions: ['get']
+    },{
       resources: '/api/consumption-users',
       permissions: ['get']
     }, {
@@ -42,22 +54,10 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/payments/:paymentId',
       permissions: ['get']
     }]
-  },{
-    roles: ['user'],
-    allows: [{
-      resources: '/api/consumptions',
-      permissions: ['get']
-    }, {
-      resources: '/api/consumptions/:consumptionId',
-      permissions: ['get']
-    }]
   }, {
     roles: ['guest'],
     allows: [{
-      resources: '/api/consumptions',
-      permissions: ['get']
-    }, {
-      resources: '/api/consumptions/:consumptionId',
+      resources: '/api/consumption-users',
       permissions: ['get']
     }]
   }]);
