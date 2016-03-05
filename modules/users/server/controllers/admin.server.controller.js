@@ -13,6 +13,9 @@ var path = require('path'),
  */
 exports.read = function (req, res) {
   res.json(req.model);
+  req.model.resetCount(function(err){
+    console.log("COUNT RESET!");
+  });
 };
 
 /**

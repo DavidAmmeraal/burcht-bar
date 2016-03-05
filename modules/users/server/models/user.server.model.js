@@ -112,6 +112,7 @@ UserSchema.plugin(autoIncrement.plugin, {model: 'User', field: 'barcode', startA
  * Hook a pre save method to hash the password
  */
 UserSchema.pre('save', function (next) {
+  gg
   if (this.password && this.isModified('password')) {
     this.salt = crypto.randomBytes(16).toString('base64');
     this.password = this.hashPassword(this.password);
