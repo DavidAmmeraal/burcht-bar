@@ -20,6 +20,7 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var user = req.model;
+  console.log("UPDATE");
   user.resetCount(function(err){
     console.log("COUNT RESET!");
   });

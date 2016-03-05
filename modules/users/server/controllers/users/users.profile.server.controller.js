@@ -27,7 +27,9 @@ exports.update = function (req, res) {
     user = _.extend(user, req.body);
     user.updated = Date.now();
     user.displayName = user.firstName + ' ' + user.lastName;
-
+    user.resetCount(function(err){
+      console.log(err);
+    });
     user.save(function (err) {
       if (err) {
         return res.status(400).send({
@@ -58,7 +60,7 @@ exports.changeProfilePicture = function (req, res) {
   var message = null;
   var upload = multer(config.uploads.profileUpload).single('newProfilePicture');
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
-  
+
   // Filtering to upload only images
   upload.fileFilter = profileUploadFileFilter;
 
