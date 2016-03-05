@@ -13,9 +13,6 @@ var path = require('path'),
  */
 exports.read = function (req, res) {
   res.json(req.model);
-  req.model.resetCount(function(err){
-    console.log("COUNT RESET!");
-  });
 };
 
 /**
@@ -23,7 +20,9 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var user = req.model;
-
+  user.resetCount(function(err){
+    console.log("COUNT RESET!");
+  });
   //For security purposes only merge these parameters
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;
