@@ -8,6 +8,9 @@ angular.module('consumptions').controller('PaymentsController', ['$scope', '$sta
     $scope.submitted = false;
 
     $scope.shouldRender = function(){
+      console.log("AUTHENTICATION!");
+      console.log("SCOPE AUTHENTICATION = " , $scope.authentication);
+      console.log("SCOPE AUTHENTICATION USER = " , $scope.authentication.user);
       if($scope.authentication && $scope.authentication.user && $scope.authentication.user.roles.indexOf('admin') !== -1){
         return true;
       }
