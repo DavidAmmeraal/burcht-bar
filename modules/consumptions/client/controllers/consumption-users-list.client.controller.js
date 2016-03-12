@@ -10,7 +10,7 @@ angular.module('users').controller('ConsumptionUsersListController', ['$scope', 
       {
         'field': 'displayName',
         'label': 'Naam',
-        'sorting': 0
+        'sorting': 0,
       },
       {
         'field': 'balance',
