@@ -37,9 +37,7 @@ angular.module('users').controller('ConsumptionUsersListController', ['$scope', 
     };
 
     $scope.find = function(){
-      $scope.users = ConsumptionUsers.query({
-        sort: $scope.sorting
-      });
+      $scope.users = ConsumptionUsers.query();
     };
 
     $scope.find();
