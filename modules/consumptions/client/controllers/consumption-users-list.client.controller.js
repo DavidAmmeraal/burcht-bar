@@ -26,7 +26,7 @@ angular.module('users').controller('ConsumptionUsersListController', ['$scope', 
     $scope.setSorting = function(field){
       angular.forEach($scope.fields, function(cField){
         if(cField === field){
-          cField.sorting = cField.sorting ? -cField.sorting : -1;
+          cField.sorting = cField.sorting ? -cField.sorting : 1;
           $scope.sorting = {};
           $scope.sorting[cField.field] = cField.sorting;
         }else{
