@@ -17,6 +17,9 @@ module.exports = {
         'public/lib/angular-bootstrap/ui-bootstrap-tpls.min.js',
         'public/lib/angular-file-upload/angular-file-upload.min.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
+        'public/lib/JsBarcode/JsBarcode.js',
+        'public/lib/JsBarcode/barcodes/CODE39.js',
+        'public/lib/JsBarcode/barcodes/EAN_UPC.js',
         'public/lib/underscore/underscore-min.js'
       ]
     },
