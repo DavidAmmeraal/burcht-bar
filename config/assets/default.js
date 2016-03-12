@@ -19,7 +19,8 @@ module.exports = {
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/JsBarcode/JsBarcode.js',
         'public/lib/JsBarcode/barcodes/CODE39.js',
-        'public/lib/JsBarcode/barcodes/EAN_UPC.js'
+        'public/lib/JsBarcode/barcodes/EAN_UPC.js',
+        'public/lib/underscore/underscore.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

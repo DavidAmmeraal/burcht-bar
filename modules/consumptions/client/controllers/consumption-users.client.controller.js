@@ -15,7 +15,6 @@ angular.module('users').controller('ConsumptionUsersController', ['$scope', '$st
       });
     }else{
       $scope.users = ConsumptionUsers.query();
-      console.log($scope.users);
     }
 
   }

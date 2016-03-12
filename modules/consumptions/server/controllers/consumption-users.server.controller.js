@@ -62,7 +62,7 @@ exports.read = function(req, res) {
  * List of Consumptions
  */
 exports.list = function(req, res) {
-  ConsumptionUser.getUsersWithBalance().then(function(result){
+  ConsumptionUser.getUsersWithBalance(req.query).then(function(result){
     res.json(result);
   }).catch(function(err){
     res.status(400).send({

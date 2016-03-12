@@ -6,6 +6,7 @@
   },
   globals: {
     angular: true,
+    _: true,
     $: true,
     jQuery: true,
     moment: true,

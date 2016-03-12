@@ -20,10 +20,6 @@ exports.read = function (req, res) {
  */
 exports.update = function (req, res) {
   var user = req.model;
-  console.log("UPDATE");
-  user.resetCount(function(err){
-    console.log("COUNT RESET!");
-  });
   //For security purposes only merge these parameters
   user.firstName = req.body.firstName;
   user.lastName = req.body.lastName;

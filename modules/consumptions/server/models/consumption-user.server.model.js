@@ -103,7 +103,7 @@ ConsumptionUserSchema.statics.getUsersWithBalance = function(params, single){
 
     var fn = single ? model.findOne : model.find;
 
-    fn.apply(model, [params]).exec().then(function(results, err){
+    fn.apply(model).exec().then(function(results, err){
       var barcodes = single ? [results.barcode] : _.map(results, function(result){
         return result.barcode;
       });
@@ -119,9 +119,7 @@ ConsumptionUserSchema.statics.getUsersWithBalance = function(params, single){
       return ConsumptionUserSchema.statics.getPaid(aggrParams);
     }).then(function(results){
       paid = results;
-
-      console.log(paid);
-
+      
       users = _.map(users, function(user){
 
         var userConsumed = _.find(consumed, function(userConsumed){
@@ -139,6 +137,18 @@ ConsumptionUserSchema.statics.getUsersWithBalance = function(params, single){
         user.balance = userPaid - userConsumed;
         return user;
       });
+
+      if(!single && params.sort){
+        var sorting = JSON.parse(params.sort);
+        for(var field in sorting) break;
+
+        users = _.sortBy(users, function(user){
+          return user[field];
+        });
+
+        if(sorting[field] < 0)
+          users = users.reverse();
+      }
 
       var returnValue = single ? users[0] : users;
       resolve(returnValue);

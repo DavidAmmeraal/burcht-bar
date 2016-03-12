@@ -85,7 +85,6 @@ angular.module('consumptions').controller('ConsumptionsController', ['$scope', '
       angular.forEach($scope.consumptions, function(consumption) {
         consumption.checked = $scope.checkAll;
       });
-      console.log($scope.consumptions);
     };
 
     // Find existing Consumption

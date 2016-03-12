@@ -1,4 +1,4 @@
-<section ng-controller="ConsumptionUsersController as controller">
+<section ng-controller="ConsumptionUsersListController as controller">
   <div class="page-header">
     <h1>Gebruikers</h1>
   </div>
@@ -6,14 +6,13 @@
     <div class="panel-heading">Overzicht van gebruikers</div>
     <table class="table table-hover">
       <tr>
-        <th>Naam</th>
-        <th>Balans</th>
+        <th ng-repeat="field in fields">
+          <a ng-click="setSorting(field)" ng-bind="field.label"></a>
+          <i class="glyphicon" ng-class="{'glyphicon-chevron-up': field.sorting > 0, 'glyphicon-chevron-down': field.sorting < 0}"></i>
+        </th>
       </tr>
       <tr ng-repeat="user in users">
-        <td>
-          <a ng-bind="user.displayName" ui-sref="consumption-users.view({barcode: user.barcode})"></a>
-        </td>
-        <td>{{user.balance | customCurrency : '€'}}</td>
+        <td ng-repeat="field in fields" ng-bind="user[field.field] | dynamicFilter:field.filter"></td>
       </tr>
     </table>
   </div>
