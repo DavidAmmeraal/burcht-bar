@@ -42,9 +42,7 @@ angular.module('users').controller('ConsumptionUsersListController', ['$scope', 
       });
     };
 
-    $scope.setSorting(_.find($scope.fields, function(val){
-      return val.default;
-    }));
+    $scope.find();
 
   }
 
