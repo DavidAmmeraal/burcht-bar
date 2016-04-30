@@ -10,9 +10,11 @@
           <a ng-click="setSorting(field)" ng-bind="field.label"></a>
           <i class="glyphicon" ng-class="{'glyphicon-chevron-up': field.sorting > 0, 'glyphicon-chevron-down': field.sorting < 0}"></i>
         </th>
+        <th>&nbsp;</th>
       </tr>
       <tr ng-repeat="user in users">
         <td ng-repeat="field in fields" ng-bind="user[field.field] | dynamicFilter:field.filter"></td>
+        <td><a href="/consumption-users/{{user.barcode}}">View</a></td>
       </tr>
     </table>
   </div>
